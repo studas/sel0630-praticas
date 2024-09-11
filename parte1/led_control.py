@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 LED_PIN = 18
-BUTTON_PIN = 27
+BUTTON_PIN = 15
 
 GPIO.setmode(GPIO.BCM)
 
