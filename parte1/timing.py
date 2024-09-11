@@ -38,8 +38,6 @@ def cleanup():
             pass
         except KeyboardInterrupt:
             pass
-        finally:
-            GPIO.cleanup()
 
 def main():
     tempo = entrada_tempo()
