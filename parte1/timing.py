@@ -37,8 +37,9 @@ def cleanup():
             time.sleep(1/30)
             pass
         except KeyboardInterrupt:
-            GPIO.cleanup()
             pass
+        finally:
+            GPIO.cleanup()
 
 def main():
     tempo = entrada_tempo()
