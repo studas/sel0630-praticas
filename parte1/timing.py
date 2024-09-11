@@ -31,9 +31,20 @@ def entrada_tempo():
         except ValueError as e:
             print(f"Entrada inválida: {e}. Tente novamente.")
 
+def cleanup():
+    while True:
+        try:
+            time.sleep(1/30)
+            pass
+        except KeyboardInterrupt:
+            GPIO.cleanup()
+            pass
+
 def main():
     tempo = entrada_tempo()
     contagem_regressiva(tempo)
+    cleanup()
+
 
 if __name__ == "__main__":
     main()
