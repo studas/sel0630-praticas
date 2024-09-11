@@ -32,12 +32,12 @@ def entrada_tempo():
             print(f"Entrada inválida: {e}. Tente novamente.")
 
 def cleanup():
-    while True:
-        try:
+    try:
+        while True:
             time.sleep(1/30)
-            pass
-        except KeyboardInterrupt:
-            pass
+    except KeyboardInterrupt:
+        GPIO.output(LED_PIN, GPIO.LOW)
+        pass
 
 def main():
     tempo = entrada_tempo()
