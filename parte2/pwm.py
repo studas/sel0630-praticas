@@ -5,38 +5,40 @@ import time
 gpio.setwarnings(False)
  
 #Configuring GPIO
-pio.setmode(gpio.BOARD)
-gpio.setup(38,gpio.OUT)
-gpio.setup(40,gpio.OUT)
+gpio.setmode(gpio.BCM)
+gpio.setup(18,gpio.OUT)
+
  
 #Configure the pwm objects and initialize its value
-pwmBlue = gpio.PWM(38,100)
-pwmBlue.start(0)
- 
-pwmRed = gpio.PWM(40,100)
-pwmRed.start(100)
+pwmLed = gpio.PWM(18,100)
+pwmLed.start(0)
  
 #Create the dutycycle variables
-dcBlue = 0
-dcRed  = 100
- 
+duty_cycle = 0
+
+increase = True
+
 #Loop infinite
-while True:
+try:
+    while True:
    
-    #increment gradually the luminosity
-    pwmBlue.ChangeDutyCycle(dcBlue)
-    time.sleep(0.05)
-    dcBlue = dcBlue + 1
-    if dcBlue == 100:
-        dcBlue = 0
- 
-    #decrement gradually the luminosity
-    pwmRed.ChangeDutyCycle(dcRed)
-    time.sleep(0.05)
-    dcRed = dcRed - 1
-    if dcRed == 0:
-        dcRed = 100
-    
-#End code
-gpio.cleanup()
-exit()
+        #increment gradually the luminosity
+        pwmLed.ChangeDutyCycle(duty_cycle)
+        time.sleep(0.05)
+        if increase:
+            duty_cycle = duty_cycle + 1
+        else:
+            duty_cycle = duty_cycle - 1
+        
+        if duty_cycle >= 100:
+            increase = False
+        
+        elif duty_cycle <= 0:
+            increase = True
+
+except KeyboardInterrupt:
+    pass
+
+finally:
+    gpio.cleanup()
+
