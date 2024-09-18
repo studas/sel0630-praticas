@@ -5,7 +5,7 @@ import signal
 import sys
 
 # GPIO setup
-LED_PINS = [4, 17, 27, 22, 10, 9, 11, 0]  # Example GPIO pins for 8 LEDs
+LED_PINS = [4, 17, 27, 22, 0, 11, 9, 10]  # Example GPIO pins for 8 LEDs
 NUM_THREADS = len(LED_PINS)
 mutex_array = [threading.Lock() for _ in range(NUM_THREADS)]
 current_thread = 0
