@@ -1,6 +1,6 @@
 # Prática 2 - SEL0630: Projetos em Sistemas Embarcados
 
-Repositório destinado à entrega do trabalho 3 da disciplina SEL0630 - Projetos em Sistemas Embarcados. O trabalho foi dividido em três partes, conforme especificado no roteiro. A seguir, detalhamos a implementação de cada parte do trabalho.
+Repositório destinado à entrega da prática 2 da disciplina SEL0630 - Projetos em Sistemas Embarcados. O trabalho foi dividido em três partes, conforme especificado no roteiro. A seguir, detalhamos a implementação de cada parte do trabalho.
 
 ## Estrutura de Diretórios
 ```bash
@@ -28,8 +28,7 @@ python parte1/timing.py
 ```
 
 ### Fotos e vídeos
-_Aguardando inserção_
-
+![led_botao](https://github.com/studas/sel0630-praticas/blob/main/pratica2/images_nd_videos/led_botao.jpg)
 ---
 
 ## Parte 2: Controle de Brilho com PWM e Sensores
@@ -43,11 +42,6 @@ python parte2/pwm.py
 python parte2/ldr.py
 ```
 
-### Fotos e vídeos
-_Aguardando inserção_
-
----
-
 ## Parte 3: Aplicação com Multithreading - Token Ring com LEDs
 Nesta parte, implementamos uma simulação de um Token Ring utilizando LEDs. Cada LED representa um "nó" do anel e acende em sequência, simulando a passagem de um token. A aplicação utiliza threads para gerenciar o funcionamento paralelo.
 
@@ -60,7 +54,9 @@ python parte3/token_ring.py
 ```
 
 ### Fotos e vídeos
-_Aguardando inserção_
+![token_ring_preview](https://github.com/studas/sel0630-praticas/blob/main/pratica2/images_nd_videos/tokenring_preview.jpg)
+
+Para mais fotos e vídeos, dê uma olhada na pasta `images_nd_videos`
 
 ---
 
@@ -70,11 +66,11 @@ Para executar os scripts, siga as instruções abaixo:
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seuusuario/trabalho3-sistemas-embarcados.git
+   git clone https://github.com/studas/sel0630-praticas.git
    ```
 2. Acesse o diretório do trabalho:
    ```bash
-   cd trabalho3-sistemas-embarcados
+   cd sel0630-praticas/pratica2
    ```
 3. Execute o script desejado conforme a parte correspondente.
 
