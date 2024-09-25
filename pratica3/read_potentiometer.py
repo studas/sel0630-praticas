@@ -20,9 +20,10 @@ def main():
     
     try:
         while True:
-            pot_value = read_potentiometer(bus, I2C_ADDRESS)
-            if pot_value is not None:
-                print(f"Potentiometer Value: {pot_value} / 1023")
+            pot_raw_value = read_potentiometer(bus, I2C_ADDRESS)
+            pot_value = (20/1023)*pot_raw_value
+            if pot_raw_value is not None:
+                print(f"Potentiometer Value: {pot_value:.2f} k Ohm")
             else:
                 print("Failed to read potentiometer value.")
             
