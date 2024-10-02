@@ -8,12 +8,12 @@ GPIO.setwarnings(False)
 
 # Configuração dos pinos dos LEDs
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(5, GPIO.OUT)  # LED verde (Acesso liberado)
-GPIO.setup(6, GPIO.OUT)  # LED vermelho (Acesso negado)
+GPIO.setup(6, GPIO.OUT)  # LED verde (Acesso liberado)
+GPIO.setup(5, GPIO.OUT)  # LED vermelho (Acesso negado)
 
 # Inicializa os LEDs desligados
-GPIO.output(5, GPIO.LOW)
 GPIO.output(6, GPIO.LOW)
+GPIO.output(5, GPIO.LOW)
 
 # Cria o objeto "leitor" para a instância "SimpleMFRC522" da biblioteca
 leitor = SimpleMFRC522()
@@ -50,19 +50,19 @@ while True:  # Loop infinito
             print("Acesso liberado!")
             print(f"Bem-vindo, {cadastro[id]}")
             # Acende o LED verde (GPIO 5)
-            GPIO.output(5, GPIO.HIGH)
-            GPIO.output(6, GPIO.LOW)  # Garante que o LED vermelho está apagado
+            GPIO.output(6, GPIO.HIGH)
+            GPIO.output(5, GPIO.LOW)  # Garante que o LED vermelho está apagado
         else:
             print("Acesso negado!")
             # Acende o LED vermelho (GPIO 6)
-            GPIO.output(6, GPIO.HIGH)
-            GPIO.output(5, GPIO.LOW)  # Garante que o LED verde está apagado
+            GPIO.output(5, GPIO.HIGH)
+            GPIO.output(6, GPIO.LOW)  # Garante que o LED verde está apagado
         
         sleep(3)  # Aguarda 3 segundos para nova leitura
         
         # Desliga ambos os LEDs após o intervalo
-        GPIO.output(5, GPIO.LOW)
         GPIO.output(6, GPIO.LOW)
+        GPIO.output(5, GPIO.LOW)
 
     except KeyboardInterrupt:
         print("Programa encerrado.")
