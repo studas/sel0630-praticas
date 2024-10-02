@@ -34,7 +34,7 @@ def register_user(csv_filename='cadastro.csv'):
         #check if the tag was successfully written
         time.sleep(1)
         print("Reading the tag to verify the written data...")
-        read_user_id = reader.read_id()
+        read_tag_id, read_user_id = reader.read()
         if read_user_id == user_id:
             print("Data verification successful!")
         else:
