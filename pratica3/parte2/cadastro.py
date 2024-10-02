@@ -2,72 +2,71 @@ import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 import csv
 import time
+import sys
+import os
 
-def register_user(csv_filename='cadastro.csv'):
-    # Initialize the RFID reader
+def register_user(user_id, csv_filename='cadastro.csv'):
     reader = SimpleMFRC522()
-    
+
     try:
-        user_id = input("Enter the User ID: ").strip()
-        
         if not user_id:
-            print("User ID cannot be empty.")
-            return
-        
+            print("Error: User ID cannot be empty.")
+            sys.exit(1)
+
+        print(f"Registering User ID: {user_id}")
         print("Please place the RFID tag near the reader...")
-        
-        # Wait for a tag and read its ID
 
         try:
             tag_id, _ = reader.read()
+            print(f"Tag detected with ID: {tag_id}")
         except Exception as e:
-            print(f"An error occurred while reading the tag: {e}")
-            return
-        
-        print(f"Tag detected with ID: {tag_id}")
-        
-        # Optionally, write the user ID to the tag (uncomment if needed)
-        time.sleep(1)
-        reader.write(user_id)
-        print(f"User ID \"{user_id}\" written to the tag successfully.")
+            print(f"Error reading the tag: {e}")
+            sys.exit(1)
 
-        #check if the tag was successfully written
-        time.sleep(1)
-        print("Reading the tag to verify the written data...")
-        read_tag_id, read_user_id = reader.read()
-        if read_user_id == user_id:
-            print("Data verification successful!")
-        else:
-            print("Data verification failed. Please try again.")
-            return
-        
-        #check if file exists and write the header if it doesn't
+        # Write the user ID to the RFID tag
         try:
-            with open(csv_filename, mode='x', newline='') as csvfile:
+            reader.write(user_id)
+            print(f"User ID '{user_id}' written to the tag successfully.")
+        except Exception as e:
+            print(f"Error writing to the tag: {e}")
+            sys.exit(1)
+
+        # Verify the written data
+        time.sleep(1)  # Short delay to ensure data is written
+        try:
+            _, read_user_id = reader.read()
+            if read_user_id.strip() == user_id:
+                print("Data verification successful!")
+            else:
+                print("Data verification failed. Please try again.")
+                sys.exit(1)
+        except Exception as e:
+            print(f"Error verifying the tag data: {e}")
+            sys.exit(1)
+
+        # Ensure the CSV file has headers
+        file_exists = os.path.isfile(csv_filename)
+        try:
+            with open(csv_filename, mode='a', newline='') as csvfile:
                 csv_writer = csv.writer(csvfile)
-                csv_writer.writerow(["Tag ID", "User ID"])
-        except FileExistsError:
-            pass
+                if not file_exists:
+                    csv_writer.writerow(["Tag ID", "User ID"])  # Write header if file doesn't exist
+                csv_writer.writerow([tag_id, user_id])
+            print(f"Registration successful! Tag ID {tag_id} associated with User ID {user_id}.")
+        except Exception as e:
+            print(f"Error writing to CSV file: {e}")
+            sys.exit(1)
 
-        # Write the tag ID and user ID to the CSV file
-        with open(csv_filename, mode='a', newline='') as csvfile:
-            csv_writer = csv.writer(csvfile)
-            csv_writer.writerow([tag_id, user_id])
-        
-        print(f"Registration successful! Tag ID {tag_id} associated with User ID {user_id}.")
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
     finally:
         GPIO.cleanup()
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python3 cadastro.py <user_id>")
+        sys.exit(1)
+    
+    user_id = sys.argv[1].strip()
+    register_user(user_id)
 
 if __name__ == "__main__":
-    try:
-        while True:
-            register_user()
-            time.sleep(1)
-    except KeyboardInterrupt:
-        print("\nExiting program.")
-    finally:
-        GPIO.cleanup()
-
+    main()
