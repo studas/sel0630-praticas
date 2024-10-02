@@ -32,6 +32,7 @@ def register_user(csv_filename='cadastro.csv'):
         print(f"User ID \"{user_id}\" written to the tag successfully.")
 
         #check if the tag was successfully written
+        time.sleep(1)
         print("Reading the tag to verify the written data...")
         read_user_id = reader.read_id()
         if read_user_id == user_id:
