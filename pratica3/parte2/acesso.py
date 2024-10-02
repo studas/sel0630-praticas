@@ -41,8 +41,7 @@ print("Aproxime a tag do leitor para leitura.")
 while True:  # Loop infinito
     try:
         # Criar as variáveis "id" e "texto", e atribuí-las às leituras da tag pelo leitor
-        try:
-            id, texto = leitor.read()
+        id, texto = leitor.read()
 
         print(f"ID: {id}\nTexto: {texto}")  # Exibe as informações coletadas
         
