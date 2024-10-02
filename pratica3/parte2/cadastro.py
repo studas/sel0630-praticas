@@ -27,6 +27,7 @@ def register_user(csv_filename='cadastro.csv'):
         print(f"Tag detected with ID: {tag_id}")
         
         # Optionally, write the user ID to the tag (uncomment if needed)
+        time.sleep(1)
         reader.write(user_id)
         print(f"User ID \"{user_id}\" written to the tag successfully.")
 
@@ -39,10 +40,13 @@ def register_user(csv_filename='cadastro.csv'):
             print("Data verification failed. Please try again.")
             return
         
-        #if the file does not exist, it will be created
-        with open(csv_filename, mode='a', newline='') as csvfile:
-            csv_writer = csv.writer(csvfile)
-            csv_writer.writerow(['rfid_tag', 'user_id'])
+        #check if file exists and write the header if it doesn't
+        try:
+            with open(csv_filename, mode='x', newline='') as csvfile:
+                csv_writer = csv.writer(csvfile)
+                csv_writer.writerow(["Tag ID", "User ID"])
+        except FileExistsError:
+            pass
 
         # Write the tag ID and user ID to the CSV file
         with open(csv_filename, mode='a', newline='') as csvfile:
