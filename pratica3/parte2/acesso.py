@@ -41,8 +41,9 @@ print("Aproxime a tag do leitor para leitura.")
 while True:  # Loop infinito
     try:
         # Criar as variáveis "id" e "texto", e atribuí-las às leituras da tag pelo leitor
-        id, texto = leitor.read()
-        
+        try:
+            id, texto = leitor.read()
+
         print(f"ID: {id}\nTexto: {texto}")  # Exibe as informações coletadas
         
         # Verifica se o ID lido está no cadastro
@@ -63,9 +64,14 @@ while True:  # Loop infinito
         # Desliga ambos os LEDs após o intervalo
         GPIO.output(6, GPIO.LOW)
         GPIO.output(5, GPIO.LOW)
+    
+    except Exception as e:
+        print(f"Erro durante a leitura da tag: {str(e)}")
+        GPIO.output(6, GPIO.HIGH)
+        sleep(3)
+        GPIO.output(6, GPIO.LOW)
 
     except KeyboardInterrupt:
         print("Programa encerrado.")
         GPIO.cleanup()
         break
-
