@@ -1,6 +1,6 @@
 # Prática 3 - SEL0630: Projetos em Sistemas Embarcados
 
-Repositório destinado à entrega da prática 3 da disciplina SEL0630 - Projetos em Sistemas Embarcados. O trabalho foi dividido em três partes, conforme especificado no roteiro. A seguir, detalhamos a implementação de cada parte do trabalho.
+Repositório destinado à entrega da prática 3 da disciplina SEL0630 - Projetos em Sistemas Embarcados. O trabalho foi dividido em duas partes, conforme especificado no roteiro. A seguir, detalhamos a implementação de cada parte do trabalho.
 
 ## Estrutura de Diretórios
 ```bash
