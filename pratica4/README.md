@@ -12,12 +12,24 @@ Repositório destinado à entrega da prática 4 da disciplina SEL0630 - Projetos
 ```
 
 ## Prática
-
+Desenvolvemos um service para o Raspberry Pi que faz um LED piscar. Fizemos tanto uma versão com sh `blink.sh` quanto uma versão com Python `led_blink.py`.
 
 ### Execução
+Para iniciar e parar o serviço, execute os comandos:
+```bash
+sudo systemctl start blink
+sudo systemctl stop blink
+```
 
+Para cadastrar o serviço na inicialização, execute o comando:
+```bash
+sudo cp blink.service /etc/systemd/system/
+sudo systemctl enable blink
+```
 
 ### Fotos e vídeos
+![montagem](https://github.com/studas/sel0630-praticas/blob/main/pratica4/images_nd_videos/blink_service.jpeg)
+![demonstracao](https://github.com/studas/sel0630-praticas/blob/main/pratica4/images_nd_videos/blink_service.mp4)
 
 ---
 
