@@ -1,4 +1,4 @@
-#/bin/python3
+#!/bin/python
 
 import RPi.GPIO as GPIO
 import time

@@ -3,7 +3,9 @@ Description= Blink LED
 After=multi-user.target
 
 [Service]
-ExecStart=/home/sel/sel0630/pratica4/blink.sh
+ExecStart=/home/sel/sel0630/pratica4/led_blink.py
+# Uncomment to use the shell script
+#ExecStart=/home/sel/sel0630/pratica4/blink.sh
 user=sel
 
 [Install]
