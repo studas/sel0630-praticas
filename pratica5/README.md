@@ -1,4 +1,4 @@
-# Prática 4 - SEL0630: Projetos em Sistemas Embarcados
+# Prática 5 - SEL0630: Projetos em Sistemas Embarcados
 
 Repositório destinado à entrega da prática 5 da disciplina SEL0630 - Projetos em Sistemas Embarcados. A seguir, detalhamos a implementação de cada parte do trabalho.
 
